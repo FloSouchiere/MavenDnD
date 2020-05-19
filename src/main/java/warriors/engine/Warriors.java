@@ -65,7 +65,7 @@ public class Warriors implements WarriorsAPI {
 	}
 	
 	private void addMapsToMapsList(List<Map> list) {
-		list.add(Board.Board); // Board.getMapName()
+		list.add(Board.Board);
 	}
 
 }
