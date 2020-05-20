@@ -23,13 +23,13 @@ public class GameStates implements GameState {
 
 	//Constructor
 	
-	public GameStates(String playerName, Hero hero, Map map) {
+	public GameStates(String GameID, String playerName, Hero hero, Map map) {
 		this.playerName = playerName;
 		this.hero = hero;
 		this.map = map;
 		this.gameStatus = GameStatus.IN_PROGRESS;
-		this.GameID = "Game";
-		this.LastLog = "Start";
+		this.GameID = GameID;
+		this.LastLog = "Welcome to the Jungle";
 		this.CurrentCase = 0;
 	}
 
@@ -71,7 +71,6 @@ public class GameStates implements GameState {
 	@Override
 	public void setGameStatus(warriors.contracts.GameStatus finished) {
 
-		
 	}
 
 	public void movePlayer(int dice) {
@@ -81,21 +80,13 @@ public class GameStates implements GameState {
 		if (this.CurrentCase >= getMap().getNumberOfCase()) {
 			gameStatus = GameStatus.FINISHED;
 		}
-		// Délencher les évènements de la case sur laquelle le joureur vient de tomber
+		setLastLog(" Vous avancez en case "+getCurrentCase());
 	}
-	
-	private void nextCase() {
-		int CurrentCase = getCurrentCase();
-		CurrentCase++;
-		setCurrentCase(CurrentCase);
-		setLastLog(" Vous avancez en case"+getCurrentCase());
+
+	private void setLastLog(String lastLog) {
 		
-	}
-
-	private void setLastLog(String string) {
-	}
-
-	private void setCurrentCase(int currentCase2) {		
+		this.LastLog = lastLog;
+		
 	}
 	
 }

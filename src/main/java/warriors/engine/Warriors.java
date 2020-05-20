@@ -19,8 +19,9 @@ public class Warriors implements WarriorsAPI {
 	
 	// Attributes 
 	
+	private GameState game;
 	Random random = new Random();
-	protected java.util.Map <String,GameStates>gameList;
+	private java.util.Map <String,GameStates>gameList;
 	
 	public List<? extends Hero> getHeroes() {
 		List<Character> listOfCharacters = new ArrayList<>();
@@ -35,20 +36,13 @@ public class Warriors implements WarriorsAPI {
 	}
 
 	// Methods
-	
-	public GameState createGame(String playerName, Hero hero, Map map) {
-		GameStates game = new GameStates(playerName, hero, map);
-		gameList.put(game.getGameId(), game);
-		return game;
-	}
 
 	public GameState nextTurn(String gameID) {
 	
 		int dice = rollDice();
-		GameStates games = gameList.get(gameID);
-		games.movePlayer(dice);
+		((GameStates) game).movePlayer(dice);
 		
-		return games;
+		return game;
 		
 	}
 	
@@ -66,6 +60,12 @@ public class Warriors implements WarriorsAPI {
 	
 	private void addMapsToMapsList(List<Map> list) {
 		list.add(Board.Board);
+	}
+
+	@Override
+	public GameState createGame(String playerName, Hero hero, Map map) {
+		game = new GameStates("Map", playerName, hero, map);
+		return game;
 	}
 
 }
