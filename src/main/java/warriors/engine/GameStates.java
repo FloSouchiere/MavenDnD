@@ -1,7 +1,8 @@
 package warriors.engine;
 
-import warriors.board.Board;
 import java.util.Random;
+import warriors.board.Board;
+import warriors.engine.DAO;
 import warriors.contracts.GameState;
 import warriors.contracts.GameStatus;
 import warriors.contracts.Hero;
@@ -32,6 +33,8 @@ public class GameStates implements GameState {
 		this.LastLog = "Welcome to the Jungle";
 		this.CurrentCase = 0;
 	}
+	
+	// Methods
 
 	@Override
 	public String getPlayerName() {
